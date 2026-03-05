@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: fact_trips_enriched
+    description: "Gold fact table enriched with hourly weather + holiday flags."
+    columns:
+      - name: tpep_pickup_datetime
+        tests:
+          - not_null
+
+      - name: pickup_hour
+        tests:
+          - not_null
+
+      - name: pickup_date
+        tests:
+          - not_null
+
+      - name: temperature_2m
+        tests:
+          - not_null
+
+      - name: weathercode
+        tests:
+          - not_null

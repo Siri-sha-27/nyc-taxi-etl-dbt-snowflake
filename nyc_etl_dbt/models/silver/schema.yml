@@ -1,0 +1,68 @@
+version: 2
+
+models:
+  - name: taxi_trips_clean
+    description: "Cleaned NYC taxi trips (Silver layer) with quality flags and derived time fields."
+    columns:
+      - name: vendor_id
+        tests:
+          - not_null
+
+      - name: tpep_pickup_datetime
+        tests:
+          - not_null
+
+      - name: tpep_dropoff_datetime
+        tests:
+          - not_null
+
+      - name: pickup_date
+        tests:
+          - not_null
+
+      - name: pickup_hour
+        tests:
+          - not_null
+
+      - name: trip_distance
+        tests:
+          - not_null
+
+      - name: passenger_count
+        description: "May be null in source; nulls indicate unknown passenger count."
+
+      - name: trip_duration_minutes
+        tests:
+          - not_null
+
+  - name: weather_hourly
+    description: "Hourly weather metrics for NYC (Silver layer)."
+    columns:
+      - name: hour_ts
+        tests:
+          - unique
+          - not_null
+
+      - name: temperature_2m
+        tests:
+          - not_null
+
+      - name: precipitation
+        tests:
+          - not_null
+
+      - name: weathercode
+        tests:
+          - not_null
+
+  - name: dim_holidays
+    description: "US holidays (Silver layer)."
+    columns:
+      - name: holiday_date
+        tests:
+          - unique
+          - not_null
+
+      - name: holiday_name
+        tests:
+          - not_null
